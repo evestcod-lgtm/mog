@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
+import { Text, View, ActivityIndicator } from 'react-native';
 
 import { AppProvider, useApp } from './src/context/AppContext';
 import { T } from './src/theme';
@@ -69,13 +69,33 @@ function MainTabs() {
   );
 }
 
+function ReconnectingBanner() {
+  return (
+    <View style={{
+      position: 'absolute', top: 0, left: 0, right: 0, zIndex: 999,
+      backgroundColor: '#1a1a00', paddingVertical: 8, paddingHorizontal: 16,
+      flexDirection: 'row', alignItems: 'center', gap: 8,
+    }}>
+      <ActivityIndicator size="small" color="#FFB800" />
+      <Text style={{ color: '#FFB800', fontSize: 13, fontWeight: '600' }}>
+        Переподключение к серверу...
+      </Text>
+    </View>
+  );
+}
+
 function RootNavigator() {
-  const { user, loading, banned } = useApp();
+  const { user, loading, banned, reconnecting } = useApp();
 
   if (loading) return <Loader />;
   if (banned)  return <BannedScreen />;
   if (!user)   return <OnboardingScreen />;
-  return <MainTabs />;
+  return (
+    <View style={{ flex: 1 }}>
+      {reconnecting && <ReconnectingBanner />}
+      <MainTabs />
+    </View>
+  );
 }
 
 export default function App() {
