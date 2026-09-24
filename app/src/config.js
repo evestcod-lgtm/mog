@@ -1,8 +1,14 @@
-// 👇 ИЗМЕНИ ЭТО на IP своего телефона с Termux
-// Запусти start.sh — он покажет твой IP
-export const SERVER_URL = 'http://192.168.1.100:3000';
+// ═══════════════════════════════════════════════════
+// FIREBASE — URL меняется ЗДЕСЬ. Одна строчка навсегда.
+// Как получить: console.firebase.google.com → твой проект
+//               → Realtime Database → скопируй URL
+// ═══════════════════════════════════════════════════
+export const FIREBASE_DB_URL = 'https://mog-school-default-rtdb.europe-west1.firebasedatabase.app';
 
-export const SOCKET_URL = SERVER_URL;
+// Запасной URL если Firebase недоступен (можно оставить пустым)
+export const FALLBACK_SERVER_URL = '';
+
+// ═══════════════════════════════════════════════════
 
 export const SCHOOLS = [
   { id: 'n7', label: 'Школа №7', emoji: '🏫', color: '#4488FF' },
@@ -16,15 +22,14 @@ export const SUBJECTS = [
 ];
 
 export const ANNOUNCEMENT_CATEGORIES = [
-  { id: 'found',    emoji: '🔵', label: 'Найдено',      color: '#4488FF' },
-  { id: 'meeting',  emoji: '🟢', label: 'Собрание',     color: '#44BB66' },
-  { id: 'team',     emoji: '🟡', label: 'Команда',      color: '#FFB800' },
-  { id: 'lost',     emoji: '🔴', label: 'Потеряно',     color: '#FF4444' },
-  { id: 'olympiad', emoji: '🟣', label: 'Олимпиада',    color: '#AA44FF' },
-  { id: 'other',    emoji: '⚪', label: 'Другое',       color: '#888888' },
+  { id: 'found',    emoji: '🔵', label: 'Найдено',   color: '#4488FF' },
+  { id: 'meeting',  emoji: '🟢', label: 'Собрание',  color: '#44BB66' },
+  { id: 'team',     emoji: '🟡', label: 'Команда',   color: '#FFB800' },
+  { id: 'lost',     emoji: '🔴', label: 'Потеряно',  color: '#FF4444' },
+  { id: 'olympiad', emoji: '🟣', label: 'Олимпиада', color: '#AA44FF' },
+  { id: 'other',    emoji: '⚪', label: 'Другое',    color: '#888888' },
 ];
 
 export const LEVELS = ['Начинающий', 'Средний', 'Продвинутый'];
-
 export const CLASS_LETTERS = ['А', 'Б', 'В', 'Г', 'Д'];
 export const CLASS_NUMBERS = ['5','6','7','8','9','10','11'];
